@@ -1,24 +1,14 @@
-import sqlite3
+from flask_sqlalchemy import SQLAlchemy
 
-def init_db():
-    conn = sqlite3.connect('database.db')
-    c = conn.cursor()
-    c.execute('''
-        CREATE TABLE IF NOT EXISTS queries (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            case_type TEXT,
-            case_number TEXT,
-            filing_year TEXT,
-            response TEXT
-        )
-    ''')
-    conn.commit()
-    conn.close()
+db = SQLAlchemy()
 
-def save_query(case_type, case_number, filing_year, response):
-    conn = sqlite3.connect('database.db')
-    c = conn.cursor()
-    c.execute('INSERT INTO queries (case_type, case_number, filing_year, response) VALUES (?, ?, ?, ?)',
-              (case_type, case_number, filing_year, response))
-    conn.commit()
-    conn.close()
+class CaseQuery(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    case_type = db.Column(db.String(100))
+    case_number = db.Column(db.String(20))
+    case_year = db.Column(db.String(4))
+    raw_response = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime, default=db.func.current_timestamp())
+
+    def __repr__(self):
+        return f'<CaseQuery {self.case_type} {self.case_number}/{self.case_year}>'

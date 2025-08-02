@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Delhi High Court Case Scraper</title>
+</head>
+<body>
+  <h2>Delhi High Court Case Lookup</h2>
+  <form action="/fetch" method="post">
+    <label for="case_type">Case Type:</label>
+    <input type="text" name="case_type" required><br>
+
+    <label for="case_number">Case Number:</label>
+    <input type="text" name="case_number" required><br>
+
+    <label for="case_year">Case Year:</label>
+    <input type="text" name="case_year" required><br>
+
+    <button type="submit">Fetch Case</button>
+  </form>
+
+  {% if results %}
+    <h3>Results:</h3>
+    {% for case in results %}
+      <div style="border:1px solid #ccc; padding:10px; margin:10px;">
+        <p><strong>S.No.:</strong> {{ case.sno }}</p>
+        <p><strong>Case No:</strong> {{ case.case_no }}</p>
+        <p><strong>Petitioner Vs. Respondent:</strong> {{ case.party }}</p>
+        <p><strong>Listing Info:</strong> {{ case.listing }}</p>
+        <p><strong>Order URL:</strong> <a href="{{ case.order_url }}" target="_blank">{{ case.order_url }}</a></p>
+
+        {% if case.orders %}
+          <h4>Orders:</h4>
+          <ul>
+            {% for order in case.orders %}
+              <li>
+                {{ order.date }} - <a href="{{ order.link }}">{{ order.text }}</a> |
+                Corrigendum: {{ order.corrigendum }} |
+                Hindi Order: {{ order.hindi }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    {% endfor %}
+  {% endif %}
+</body>
+</html>

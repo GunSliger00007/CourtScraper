@@ -1,5 +1,28 @@
-<h2>Case Details</h2>
-<p>Parties: {{ data.parties }}</p>
-<p>Filing Date: {{ data.filing_date }}</p>
-<p>Next Hearing: {{ data.next_hearing }}</p>
-<a href="{{ data.latest_pdf }}" download>Download Latest PDF</a>
+<!DOCTYPE html>
+<html>
+<head><title>Result</title></head>
+<body>
+<h2>Case Result</h2>
+
+{% if error %}
+    <p style="color: red;">Error: {{ error }}</p>
+{% else %}
+    {% for res in results %}
+        <div>
+            <p><strong>S.No.:</strong> {{ res.sno }}</p>
+            <p><strong>Case No:</strong> {{ res.case_no }}</p>
+            <p><strong>Petitioner vs Respondent:</strong> {{ res.petitioner }}</p>
+            <p><strong>Listing Info:</strong> {{ res.listing }}</p>
+            <p><strong>Order:</strong>
+                {% if "http" in res.order_url %}
+                    <a href="{{ res.order_url }}" target="_blank">Download</a>
+                {% else %}
+                    {{ res.order_url }}
+                {% endif %}
+            </p>
+            <hr>
+        </div>
+    {% endfor %}
+{% endif %}
+</body>
+</html>

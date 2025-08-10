@@ -23,9 +23,8 @@ Installation Steps
 Clone the Repository:
 ```
 git clone https://github.com/GunSliger00007/CourtScraper.git
-```
 cd CourtScraper
-
+```
 
 Install Dependencies:Ensure Python 3.9+ is installed, then run:
 ```

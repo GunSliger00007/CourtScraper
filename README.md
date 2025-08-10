@@ -49,11 +49,6 @@ Access the Application:Open a browser and navigate to http://localhost:5000.
 CAPTCHA Handling
 The current scraper reads text-based CAPTCHA codes directly from the page and inputs them automatically.
 
-Image-based CAPTCHAs from the Delhi High Court are not supported in this version.
-
-No third-party CAPTCHA solving service is integrated.
-
-
 
 
 

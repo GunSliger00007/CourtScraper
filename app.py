@@ -32,6 +32,10 @@ def fetch():
     try:
         results = scrape_case(case_type, case_number, case_year)
 
+        if not results:  # if results is empty or None
+            error = "Case not found"
+            return render_template("index.html", results=[], error=error, case_types=case_types, years=years)
+
         # Serialize results to JSON (ensure all objects are serializable)
         raw_response = json.dumps(results, default=str)
 
@@ -50,5 +54,6 @@ def fetch():
         return render_template("index.html", results=[], error=str(e), case_types=case_types, years=years)
 
     return render_template("index.html", results=results, case_types=case_types, years=years)
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)

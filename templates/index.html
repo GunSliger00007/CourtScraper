@@ -459,8 +459,14 @@
     </ul>
     {% endif %}
   </div>
+  
   {% endfor %}
+
+
   {% endif %}
+{% if error %}
+  <div class="alert alert-warning">Case not found</div>
+{% endif %}
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {

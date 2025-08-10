@@ -44,41 +44,16 @@ python app.py
 
 Access the Application:Open a browser and navigate to http://localhost:5000.
 
-Optional: Run with Docker:Build and run the Docker container:
-```
-docker build -t my-flask-app .
-docker run -it --rm -p 5000:5000 my-flask-app
-```
 
 
+CAPTCHA Handling
+The current scraper reads text-based CAPTCHA codes directly from the page and inputs them automatically.
 
-CAPTCHA Handling Strategy
-The Delhi High Court website uses image-based CAPTCHAs to prevent automated queries, posing a challenge for scraping. The current implementation in scraper.py is a placeholder and assumes manual or third-party CAPTCHA solving due to ethical and legal considerations.
-Current Implementation
+Image-based CAPTCHAs from the Delhi High Court are not supported in this version.
 
-The scraper locates the CAPTCHA image (captcha-img) and raises an error, indicating that CAPTCHA solving is required.
-Automatic text extraction from image-based CAPTCHAs is not feasible.
-
-Proposed Solutions
-
-Manual CAPTCHA Input:
-
-Modify index.html to display the CAPTCHA image retrieved by the scraper.
-Prompt the user to enter the CAPTCHA code in a text input field.
-Send the user-provided code back to the scraper for form submission.
+No third-party CAPTCHA solving service is integrated.
 
 
-Third-Party CAPTCHA Solving:
-
-Integrate services like 2Captcha or Anti-CAPTCHA for programmatic CAPTCHA solving.
-Requires an API key and configuration in environment variables (e.g., .env).
-Note: Use of such services must comply with the court's terms of service and applicable laws.
-
-
-Audio CAPTCHA Fallback:
-
-If available, use the website’s audio CAPTCHA option.
-Process audio with speech-to-text libraries (e.g., speech_recognition), though this is complex and less reliable.
 
 
 
@@ -94,12 +69,9 @@ Add pagination support in scraper.py to handle multi-page results by detecting a
 Enable direct PDF downloads by adding a Flask route to fetch and serve PDFs using requests or Selenium.
 Periodically test the scraper against website updates, as CAPTCHA mechanisms or form structures may change.
 
-Additional Notes
-
-License: MIT License.
-Demo Video: A ≤5-minute screen-capture video demonstrating the end-to-end flow (form submission, case details display, PDF link) is recommended but not included.
-Dependencies: Ensure selenium and webdriver-manager are included in requirements.txt.
-Ethical Considerations: Automated scraping must respect the court’s terms of service and applicable laws. Manual CAPTCHA input is the safest approach for compliance.
 
 Contributing
 Contributions are welcome! Please submit a pull request or open an issue on the GitHub repository.
+
+License
+MIT License — free to use and modify with attribution.

@@ -5,7 +5,7 @@ Delhi High Court: https://delhihighcourt.nic.in/Reason: The Delhi High Court pro
 Features
 
 Search for case details using case number, party name, or other parameters.
-Display case metadata and associated court orders.
+Display case metadata and associated court orders with paging and Downloading orders documents 
 Store query logs in an SQLite database.
 Handle CAPTCHA challenges with manual input (third-party services optional).
 Flask-based web interface for user interaction.

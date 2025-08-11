@@ -52,19 +52,6 @@ The current scraper reads text-based CAPTCHA codes directly from the page and in
 
 
 
-Limitations
-
-The provided delhi_scraper.py assumes a text-based CAPTCHA, which is incompatible with the Delhi High Court’s image-based CAPTCHA.
-Full automation without user intervention may violate the website’s terms or local regulations. Manual CAPTCHA input is recommended for compliance.
-
-Future Improvements
-
-Implement a WebSocket-based solution to stream CAPTCHA images to the frontend and collect user input dynamically.
-Add pagination support in scraper.py to handle multi-page results by detecting and iterating through pagination controls (e.g., "Next" button).
-Enable direct PDF downloads by adding a Flask route to fetch and serve PDFs using requests or Selenium.
-Periodically test the scraper against website updates, as CAPTCHA mechanisms or form structures may change.
-
-
 Contributing
 Contributions are welcome! Please submit a pull request or open an issue on the GitHub repository.
 
